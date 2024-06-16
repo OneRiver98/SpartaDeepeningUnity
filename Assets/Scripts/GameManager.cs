@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
         objPool = GetComponent<ObjectPool>();
     }
 
-    public void SpawnMap(string tag)
+    public void SpawnMap()
     {
-        GameObject map = objPool.SpawnFromPool(tag);
+        GameObject map = SpawnObjPool("Map");
         map.transform.position = new Vector3(1.35f, -0.56f, nextSpawnPosition);
         map.SetActive(true);
         activeMaps.Enqueue(map);
@@ -34,5 +34,11 @@ public class GameManager : MonoBehaviour
             GameObject oldMap = activeMaps.Dequeue();
             oldMap.SetActive(false);
         }
+    }
+
+    public GameObject SpawnObjPool(string tag)
+    {
+        GameObject obj = objPool.SpawnFromPool(tag);
+        return obj;
     }
 }

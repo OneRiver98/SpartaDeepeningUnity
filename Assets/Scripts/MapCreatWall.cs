@@ -8,7 +8,7 @@ public class MapCreatWall : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.SpawnMap("Map");
+            GameManager.Instance.SpawnMap();
         }
     }
 }
