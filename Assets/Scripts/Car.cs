@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
+    private float speed;
+    private float size;
     private float direction;
 
     private Vector3 startPosition = Vector3.zero;
@@ -16,8 +18,16 @@ public class Car : MonoBehaviour
         transForm = GetComponent<Transform>();
     }
 
-    private void Start()
+    private void FixedUpdate()
+    {        
+        rigidBody.velocity = startPosition * speed;
+    }
+
+    private void OnEnable()
     {
+        speed = Random.Range(8f, 15f);
+        size = Random.Range(0.8f, 1.3f);
+
         if (transForm.position.x < 0)
         {
             startPosition = Vector3.right;
@@ -30,10 +40,14 @@ public class Car : MonoBehaviour
         }
 
         transForm.rotation = Quaternion.Euler(0f, direction, 0f);
+        transForm.localScale = new Vector3(size, size, size);
     }
 
-    private void FixedUpdate()
-    {        
-        rigidBody.velocity = startPosition * 10;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
