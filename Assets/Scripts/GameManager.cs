@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject map = SpawnObjPool("Map");
         map.transform.position = new Vector3(1.35f, -0.56f, nextSpawnPosition);
+        map.GetComponentInChildren<CarManager>().Initialize(); // 이렇게도 코드 작성 가능.
         map.SetActive(true);
         activeMaps.Enqueue(map);
 

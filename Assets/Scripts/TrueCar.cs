@@ -12,6 +12,8 @@ public class TrueCar : MonoBehaviour
     private Vector3 startPosition = Vector3.zero;
 
     [SerializeField] private GameObject[] car;
+    private GameObject curCar;
+
     private Transform transForm;
     private Rigidbody rigidBody;
 
@@ -24,8 +26,7 @@ public class TrueCar : MonoBehaviour
     private void Start()
     {
         randomNum = Random.Range(0, car.Length);
-
-        Instantiate(car[randomNum], transform);
+        Instantiate(car[randomNum],transForm);
     }
 
     private void FixedUpdate()
@@ -35,7 +36,12 @@ public class TrueCar : MonoBehaviour
 
     private void OnEnable()
     {
-        startPosition = transform.position;
+        StartCar();
+    }
+
+    private void StartCar()
+    {
+        startPosition = transForm.position;
 
         speed = Random.Range(8f, 15f);
         size = Random.Range(0.8f, 1.3f);

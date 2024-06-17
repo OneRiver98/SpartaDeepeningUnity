@@ -6,7 +6,7 @@ public class Car : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
-            gameObject.SetActive(false);
+            transform.parent.gameObject.SetActive(false);
         }
     }
 }
