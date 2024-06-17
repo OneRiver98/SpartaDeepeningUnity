@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -17,17 +18,20 @@ public class SimpleCollectibleScript : MonoBehaviour {
 
 	public GameObject collectEffect;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void OnEnable()
+    {
+		int i = Random.Range(0, 10);
 
+		if(i > 4)
+		{
+			gameObject.SetActive(false);
+		}
+    }
+
+    void Update () 
+	{
 		if (rotate)
 			transform.Rotate (Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
-
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -44,45 +48,6 @@ public class SimpleCollectibleScript : MonoBehaviour {
 		if(collectEffect)
 			Instantiate(collectEffect, transform.position, Quaternion.identity);
 
-		//Below is space to add in your code for what happens based on the collectible type
-
-		if (CollectibleType == CollectibleTypes.NoType) {
-
-			//Add in code here;
-
-			Debug.Log ("Do NoType Command");
-		}
-		if (CollectibleType == CollectibleTypes.Type1) {
-
-			//Add in code here;
-
-			Debug.Log ("Do NoType Command");
-		}
-		if (CollectibleType == CollectibleTypes.Type2) {
-
-			//Add in code here;
-
-			Debug.Log ("Do NoType Command");
-		}
-		if (CollectibleType == CollectibleTypes.Type3) {
-
-			//Add in code here;
-
-			Debug.Log ("Do NoType Command");
-		}
-		if (CollectibleType == CollectibleTypes.Type4) {
-
-			//Add in code here;
-
-			Debug.Log ("Do NoType Command");
-		}
-		if (CollectibleType == CollectibleTypes.Type5) {
-
-			//Add in code here;
-
-			Debug.Log ("Do NoType Command");
-		}
-
-		Destroy (gameObject);
+		gameObject.SetActive(false);
 	}
 }
