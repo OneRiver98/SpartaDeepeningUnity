@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,10 +12,21 @@ public class GameManager : MonoBehaviour
 
     public Queue<GameObject> activeMaps = new Queue<GameObject>();
 
+    private int score;
+    private float time;
+
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text timeText;
+
     private void Awake()
     {
         Instance = this;
         objPool = GetComponent<ObjectPool>();
+    }
+
+    private void Update()
+    {
+        time = Time.time;
     }
 
     public void SpawnMap()
