@@ -5,6 +5,11 @@ public class MapDestroyWall : MonoBehaviour
     [SerializeField] private MapCreatWall creatWall; 
     [SerializeField] private GameObject backWall;
 
+    private void Awake()
+    {
+        backWall.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) // 트리거로 맵생성 구현. 
