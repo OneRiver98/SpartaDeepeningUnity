@@ -8,5 +8,10 @@ public class Car : MonoBehaviour
         {
             transform.parent.gameObject.SetActive(false);
         }
+
+        else if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 }

@@ -12,9 +12,10 @@ public class GameManager : MonoBehaviour
 
     public Queue<GameObject> activeMaps = new Queue<GameObject>();
 
-    private int score;
+    public int score;
     private float time;
 
+    [SerializeField] private GameObject EndPansel;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text timeText;
 
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        time = Time.time;
+        TimeUpdate();
     }
 
     public void SpawnMap()
@@ -56,5 +57,22 @@ public class GameManager : MonoBehaviour
     {
         GameObject obj = objPool.SpawnFromPool(tag);
         return obj;
+    }
+
+    private void TimeUpdate()
+    {
+        time = Time.time;
+        timeText.text = time.ToString("F1");        
+    }
+
+    public void ScoreUpdate()
+    {
+        scoreText.text = score.ToString();
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        EndPansel.SetActive(true);
     }
 }

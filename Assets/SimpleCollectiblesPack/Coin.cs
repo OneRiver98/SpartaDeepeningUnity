@@ -1,22 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
-[RequireComponent(typeof(AudioSource))]
-public class SimpleCollectibleScript : MonoBehaviour {
-
-	public enum CollectibleTypes {NoType, Type1, Type2, Type3, Type4, Type5}; // you can replace this with your own labels for the types of collectibles in your game!
-
-	public CollectibleTypes CollectibleType; // this gameObject's type
-
-	public bool rotate; // do you want it to rotate?
+public class Coin : MonoBehaviour 
+{
+	public bool rotate; 
 
 	public float rotationSpeed;
 
 	public AudioClip collectSound;
 
 	public GameObject collectEffect;
+
+	private int point = 100;
 
     private void OnEnable()
     {
@@ -48,6 +43,9 @@ public class SimpleCollectibleScript : MonoBehaviour {
 		if(collectEffect)
 			Instantiate(collectEffect, transform.position, Quaternion.identity);
 
-		gameObject.SetActive(false);
+		GameManager.Instance.score += point;
+		GameManager.Instance.ScoreUpdate();
+
+        gameObject.SetActive(false);
 	}
 }
