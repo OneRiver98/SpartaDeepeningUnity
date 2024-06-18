@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         GameObject map = SpawnObjPool("Map");
         map.transform.position = new Vector3(1.35f, -0.56f, nextSpawnPosition);
 
-        map.GetComponentInChildren<CarManager>().Initialize(); // 이렇게도 코드 작성 가능.
+        map.GetComponentInChildren<CarManager>().Initialize(); // 이렇게도 코드 작성 가능. // 카매니저 초기화부분
         //map.GetComponentInChildren<CoinSpawnManager>().Initialize();
 
         map.SetActive(true);
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         nextSpawnPosition += MapLength;
     }
 
-    public void DeactivateOldMap()
+    public void DeactivateOldMap() // 리스트로 만들어졌던 맵들 삭제
     {
         if (activeMaps.Count > 0)
         {
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public GameObject SpawnObjPool(string tag)
+    public GameObject SpawnObjPool(string tag) // 오브젝트풀 꺼내는 함수
     {
         GameObject obj = objPool.SpawnFromPool(tag);
         return obj;

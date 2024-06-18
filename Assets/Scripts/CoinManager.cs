@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinManager : MonoBehaviour
+public class CoinManager : MonoBehaviour // 모든 코인을 SetActive true함. Enable로 랜덤생성 구현
 {
     private Transform coinSpawnPositionsParent;
     private List<Transform> coins = new List<Transform>();

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TrueCar : MonoBehaviour
+public class TrueCar : MonoBehaviour // 실제 자동차객체, 이게 false가 되어야 자동차가 false가 됨
 {
     private float speed;
     private float size;
@@ -39,14 +39,14 @@ public class TrueCar : MonoBehaviour
         StartCar();
     }
 
-    private void StartCar()
+    private void StartCar() // 배열에 등록 된 자동차 프리펩들 중에 랜덤으로 생성함.
     {
         startPosition = transForm.position;
 
         speed = Random.Range(8f, 15f);
         size = Random.Range(0.8f, 1.3f);
 
-        if (startPosition.x < 0)
+        if (startPosition.x < 0)    // 시작 위치에 따라 이동 방향과 회전을 줌.
         {
             startDirection = Vector3.right;
             direction = 90f;

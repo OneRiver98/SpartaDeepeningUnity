@@ -13,7 +13,7 @@ public class Coin : MonoBehaviour
 
 	private int point = 100;
 
-    private void OnEnable()
+    private void OnEnable() // 코인 실행 되면 랜덤확률로 꺼버리게 해서 랜덤 생성 구현함.
     {
 		int i = Random.Range(0, 10);
 
